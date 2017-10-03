@@ -5,7 +5,7 @@
 --%>
 
 <footer class="container-fluid text-center">
-    <p>Footer Text</p>
+    <p>©2017 ADIM. Todos los derechos reservados.</p>
 </footer>
 
 </body>

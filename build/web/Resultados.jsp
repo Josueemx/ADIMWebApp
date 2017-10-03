@@ -42,7 +42,9 @@
             <h3>Clientes potenciales:</h3>
             <div>
                 <canvas id="myChart" width="400" height="400"></canvas>
-                <p id="clients" style="">200</p>
+                <p id="clients" style="">
+                    ${param.audience}
+                </p>
             </div>
         </div>
         <p style="margin-top: 20px;">Al analizar los factores del estudio de mercado, se encontró que existe una alta viabilidad para éste además de suficiente mercado. El cual contaría con almenos 200 clientes.</p>

@@ -16,11 +16,6 @@ import com.facebook.ads.sdk.Campaign;
 import com.facebook.ads.sdk.IDName;
 import com.facebook.ads.sdk.Targeting;
 import com.facebook.ads.sdk.TargetingGeoLocation;
-import com.facebook.ads.sdk.TargetingGeoLocationCity;
-import com.facebook.ads.sdk.TargetingGeoLocationRegion;
-import facebook4j.Facebook;
-import facebook4j.FacebookFactory;
-import facebook4j.auth.AccessToken;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -30,31 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.facebook.ads.sdk.*;
 import com.facebook.ads.sdk.AdAccount.APIRequestGetReachEstimate;
-import com.facebook.ads.sdk.AdAccount.APIRequestGetReachFrequencyPredictions;
-import com.facebook.ads.sdk.AdAccount.APIRequestGetRoas;
-import com.facebook.ads.sdk.AdAccount.APIRequestGetTargetingBrowse;
-import com.facebook.ads.sdk.AdAccount.APIRequestGetTargetingSearch;
-import com.facebook.ads.sdk.AdAccount.APIRequestGetTargetingSentenceLines;
-import com.facebook.ads.sdk.AdAccount.APIRequestGetTargetingSuggestions;
-import com.facebook.ads.sdk.AdAccount.APIRequestGetUsers;
-import com.facebook.ads.sdk.AdSet.APIRequestGetInsights;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import javax.servlet.ServletContext;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.python.core.PyObject;
-import org.python.core.PyString;
-import org.python.util.PythonInterpreter;
+
 
 /**
  *
@@ -201,30 +172,20 @@ public class Request extends HttpServlet {
     //APIRequestGetTargetingBrowse d = new AdAccount(ad_account_id, context).getTargetingBrowse().requestAllFields().execute().getRawResponse();
     
     APIRequestGetReachEstimate n = new AdAccount(ad_account_id, context).getReachEstimate().setTargetingSpec(tar);
-    APIRequestGetReachFrequencyPredictions b = new AdAccount(ad_account_id, context).getReachFrequencyPredictions().requestExternalMinimumReachField();
-    APIRequestGetTargetingSentenceLines o = new AdAccount(ad_account_id, context).getTargetingSentenceLines().setTargetingSpec(tar);
+    
     //APIRequestGetRoas c = new AdAccount(ad_account_id, context).getRoas().
     //APIRequestGetTargetingSearch e = new AdAccount(ad_account_id, context).getTargetingSearch() este puede ser util
     //APIRequestGetTargetingSuggestions f = new AdAccount(ad_account_id, context).getTargetingSuggestions().
     //APIRequestGetUsers g = new AdAccount(ad_account_id, context).getUsers().se
 //String size = "d = " + d+"\n";
-    ArrayList array = new ArrayList();
-    array.add(n);
-    array.add(b);
-    array.add(o);
-    int counter = 0;
-    String datos = "";
-    for(Object obj:array){
-        if(obj==null){
-            datos = datos + " "+counter+" es nulo"; 
-        }
-        counter++;   
-    }
-    /*aqui descomentar
-    datos = datos + " n reachestimate = " + n.execute().getRawResponse()+"\n";
-    datos = datos + " n FrequencyPredictions = " + b.execute().getRawResponse()+"\n";
-    datos = datos + " n SentenceLines = " +  o.execute().getRawResponse() +"\n";*/
-    //String size = "n reachestimate = " + n.requestAllFields().g+"\n";
+  
+
+
+   
+    
+    request.setAttribute("audience", n.execute().head().getFieldUsers()+"");
+    //request.getRequestDispatcher("Calculadora.jsp?message=0").forward(request, response);
+    request.getRequestDispatcher("Progress.jsp").forward(request, response);
     
     
     
@@ -288,7 +249,7 @@ public class Request extends HttpServlet {
             
             
     
-
+            
             
             todo = todo+" ad fetch = " + ad.fetch().getRawResponse() + "\n";
             todo = todo +" adsecond raw = "+ adsecond.getRawResponse() + "\n";
@@ -344,7 +305,7 @@ public class Request extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             
-            out.println("<h1>"+datos+"</h1>");
+            out.println("<h1>"+"</h1>");
             
             //out.println("<h1>"+ad_set_id+"</h1>");
             

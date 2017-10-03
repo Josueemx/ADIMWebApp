@@ -27,7 +27,11 @@
 </div>
 
 <script>
-    progress();
+    progress(
+            <% if(request.getAttribute("audience") != null){ %> 
+            <%= request.getAttribute("audience")%>
+            <% } %>
+            );
 </script>
 
 <%@ include file = "footer.jsp"%>

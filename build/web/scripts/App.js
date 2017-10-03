@@ -288,7 +288,7 @@ function startMap(map){
 
 var messages = ["Conexi\u00f3n obtenida", "Llamando a base de datos", "Ejecutando scripts", "Recopilando informaci\u00f3n", "Finalizando", "Redireccionando"];
 
-function progress(){
+function progress(size){
     var bar = document.getElementById("bar");//.style.width; .innerHTML
     var action = document.getElementById("action"); 
     var width = 1;
@@ -320,7 +320,7 @@ function progress(){
                 action.innerHTML = messages[5];
                 break; 
             case 100:
-                window.location.href="Resultados.jsp";
+                window.location.href="Resultados.jsp?audience="+size;
                 //aqui puede ser un callback o algo asi
                 break; 
         }
@@ -351,4 +351,14 @@ function algo(){
             options: {}
         });
             });
+}
+
+var autoOptions = {
+    minLength:3,   
+    delay:500,   
+    source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ]  
+ };
+
+function autocomplete(){
+    
 }

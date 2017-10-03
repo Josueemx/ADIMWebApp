@@ -59,7 +59,7 @@
             </div>
             <div class="form-group">
                 <label for="interests">Intereses:</label>
-                <input type="text" name="interests" id="interests" placeholder="(separados por coma)" autocomplete="off" size="50">
+                <input type="text" name="interests" id="interests" placeholder="(separados por coma)" autocomplete="off" size="50" id="autocomplete">
             </div>
             <input class="btn btn-default pull-right" type="submit" value="Terminar">
             <br>
@@ -72,6 +72,17 @@
   </div>
 </div>
 
+<script>
+    $( "#autocomplete" ).autocomplete({
+        minLength:3,
+        source: function(request,response){
+           $.getJSON('searchmovies.jsp',{q:request.term},function(result){
+            movie_elements = $.map(result,function(item){return item.value;});
+            response( $.ui.autocomplete.filter(movie_elements, extractLast( request.term ) ) );
+           });
+        }
+    });
+</script>
 <script defer async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcUiD-WFZR5TVypnFv067CKIIjF4v7ptA&libraries=places,drawing&callback=initMap">
 </script>
 <script>
